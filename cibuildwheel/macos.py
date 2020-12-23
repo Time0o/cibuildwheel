@@ -268,6 +268,8 @@ def build(options: BuildOptions) -> None:
                     before_test_prepared = prepare_command(options.before_test, project='.', package=options.package_dir)
                     call(before_test_prepared, env=virtualenv_env, shell=True)
 
+                os.system('unzip -t {}'.format(repaired_wheel))
+
                 # install the wheel
                 call(['pip', 'install', str(repaired_wheel) + options.test_extras], env=virtualenv_env)
 
